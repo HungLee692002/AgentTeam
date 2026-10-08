@@ -3,6 +3,8 @@ name: reviewer
 description: Review độc lập, chỉ đọc, sản phẩm của các agent khác (research, spec, plan, test, code) theo checklist. Dùng sau mỗi giai đoạn trước khi chuyển sang giai đoạn tiếp theo.
 tools: Read, Grep, Glob, Bash
 model: inherit
+skills:
+  - team-rules
 memory: project
 color: red
 ---

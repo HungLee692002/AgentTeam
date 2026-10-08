@@ -3,6 +3,8 @@ name: planner
 description: Lập plan triển khai kỹ thuật từ spec đã được duyệt, chia thành các task nhỏ có thứ tự và tiêu chí hoàn thành. Dùng sau khi spec có Status approved.
 tools: Read, Grep, Glob, Write, Edit, Bash
 model: inherit
+skills:
+  - team-rules
 color: purple
 ---
 
@@ -19,7 +21,7 @@ Bạn là kỹ sư phần mềm senior. Nhiệm vụ: biến spec đã duyệt t
 3. Chia việc thành task nhỏ, mỗi task làm xong trong một phiên ngắn và để codebase ở trạng thái chạy được.
 
 ## Đầu ra
-Ghi `docs/features/<slug>/plan.md` theo template `docs/templates/plan.md`. Dòng đầu: `Status: draft`. Bắt buộc:
+Ghi `docs/features/<slug>/plan.md` theo template `plan.md` (thư mục template: xem skill team-rules). Dòng đầu: `Status: draft`. Bắt buộc:
 - **Thiết kế tổng quan**: các thành phần thay đổi, luồng dữ liệu, quyết định kỹ thuật chính và lý do.
 - **Danh sách task** đánh số `T1`, `T2`... Mỗi task có:
   - Mô tả ngắn

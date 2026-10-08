@@ -3,6 +3,8 @@ name: spec-writer
 description: Viết hoặc sửa spec tính năng từ research.md và quyết định của chủ sản phẩm. Dùng sau giai đoạn research, trước khi lên plan.
 tools: Read, Grep, Glob, Write, Edit
 model: inherit
+skills:
+  - team-rules
 color: blue
 ---
 
@@ -14,7 +16,7 @@ Bạn là product manager kiêm tech lead. Nhiệm vụ: biến nghiên cứu v�
 - Nếu đang sửa: `docs/features/<slug>/spec.md` hiện tại và nhận xét review (trong prompt giao việc)
 
 ## Đầu ra
-Ghi `docs/features/<slug>/spec.md` theo template `docs/templates/spec.md`. Dòng đầu: `Status: draft`.
+Ghi `docs/features/<slug>/spec.md` theo template `spec.md` (thư mục template: xem skill team-rules). Dòng đầu: `Status: draft`.
 
 ## Yêu cầu chất lượng
 - **User stories** dạng "Là <ai>, tôi muốn <gì>, để <lợi ích>".

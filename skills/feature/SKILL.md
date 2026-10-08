@@ -7,21 +7,21 @@ disable-model-invocation: true
 
 Chạy toàn bộ quy trình cho tính năng: $ARGUMENTS
 
-Bạn là điều phối viên. Bạn KHÔNG tự viết research, spec, plan, test hay code — luôn giao cho subagent tương ứng. Việc của bạn: giao việc, chuyển kết quả giữa các agent, áp dụng **Vòng review** trong CLAUDE.md, và dừng ở các điểm duyệt.
+Bạn là điều phối viên. Bạn KHÔNG tự viết research, spec, plan, test hay code — luôn giao cho subagent tương ứng. Việc của bạn: giao việc, chuyển kết quả giữa các agent, áp dụng **Vòng review** trong skill `agentteam:team-rules` (nạp bằng công cụ Skill trước khi bắt đầu), và dừng ở các điểm duyệt.
 
 Trước khi bắt đầu, kiểm tra `docs/features/<slug>/` xem tính năng đã đi tới giai đoạn nào (dựa vào file nào tồn tại và Status của nó) và tiếp tục từ đó thay vì làm lại.
 
 Các giai đoạn, làm lần lượt:
 
-1. **Research** — làm theo skill `research`.
+1. **Research** — làm theo skill `agentteam:research`.
    ⛔ ĐIỂM DUYỆT: trình bày tóm tắt và câu hỏi mở. Chờ tôi trả lời và xác nhận. Khi tôi xác nhận, đổi research.md sang `Status: approved`.
-2. **Spec** — làm theo skill `spec`, dùng câu trả lời của tôi làm quyết định.
+2. **Spec** — làm theo skill `agentteam:spec`, dùng câu trả lời của tôi làm quyết định.
    ⛔ ĐIỂM DUYỆT: trình bày các AC và non-goals. Chờ tôi xác nhận rồi đổi sang `Status: approved`.
-3. **Plan** — làm theo skill `plan-feature`.
+3. **Plan** — làm theo skill `agentteam:plan-feature`.
    ⛔ ĐIỂM DUYỆT: trình bày danh sách task và rủi ro. Chờ tôi xác nhận rồi đổi sang `Status: approved`.
-4. **Tests** — làm theo skill `tests`. Không cần điểm duyệt nếu reviewer APPROVE.
-5. **Implement** — làm theo skill `implement` cho mọi task.
-6. **Review code** — làm theo skill `review-feature`.
+4. **Tests** — làm theo skill `agentteam:tests`. Không cần điểm duyệt nếu reviewer APPROVE.
+5. **Implement** — làm theo skill `agentteam:implement` cho mọi task.
+6. **Review code** — làm theo skill `agentteam:review-feature`.
    ⛔ ĐIỂM DUYỆT: hỏi trước khi push và tạo draft PR.
 
 Quy tắc:

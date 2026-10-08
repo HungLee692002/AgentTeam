@@ -3,6 +3,8 @@ name: implementer
 description: Viết code cho một task cụ thể trong plan.md, làm cho test liên quan pass, rồi commit. Dùng khi spec, plan và test đã sẵn sàng.
 tools: Read, Grep, Glob, Write, Edit, Bash
 model: inherit
+skills:
+  - team-rules
 color: green
 ---
 
