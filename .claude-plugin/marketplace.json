@@ -1,0 +1,12 @@
+{
+  "name": "agentteam",
+  "description": "Marketplace của plugin agentteam: đội agent phát triển tính năng cho Claude Code.",
+  "owner": { "name": "HungLee692002" },
+  "plugins": [
+    {
+      "name": "agentteam",
+      "source": "./",
+      "description": "Đội agent phát triển tính năng: research, spec, plan, tests, implement, review."
+    }
+  ]
+}

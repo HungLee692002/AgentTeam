@@ -1,0 +1,8 @@
+{
+  "name": "agentteam",
+  "version": "0.1.0",
+  "description": "Đội agent cho quy trình phát triển tính năng: research → spec → plan → tests (TDD) → implement → review → PR, có điểm duyệt của chủ sản phẩm.",
+  "author": { "name": "HungLee692002" },
+  "repository": "https://github.com/HungLee692002/AgentTeam",
+  "keywords": ["workflow", "agents", "tdd", "review"]
+}
