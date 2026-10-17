@@ -10,8 +10,8 @@ Trước hết nạp skill `agentteam:team-rules` (quy trình, Vòng review, quy
 
 Ghi chú thêm: $ARGUMENTS
 
-1. Kiểm tra `docs/features/$0/spec.md` có `Status: approved`. Nếu không, dừng lại.
+1. Kiểm tra `docs/features/$0/spec.md` tồn tại. Nếu không, dừng và nói tôi cần chạy `/agentteam:spec`. Nếu bản review `spec` mới nhất còn Blocking, dừng và nêu ra. Nếu ổn và Status còn `draft`, tự duyệt theo skill `agentteam:team-rules` (đổi sang `Status: approved`, thêm `Approved: <ngày>`, commit `docs($0): approve spec`).
 2. Giao việc cho subagent `agentteam:planner` với slug `$0` và ghi chú thêm (nếu có).
 3. Giao cho subagent `agentteam:reviewer` với loại `plan`. Áp dụng **Vòng review** trong skill `agentteam:team-rules` (sửa bằng `agentteam:planner`).
 4. Trình bày: danh sách task (mã, mô tả, phụ thuộc), rủi ro chính, verdict cuối của reviewer.
-5. Dừng lại. Nhắc tôi chạy `/agentteam:approve $0 plan` rồi `/agentteam:tests $0`.
+5. Dừng lại. Nhắc tôi đọc `docs/features/$0/plan.md` rồi chạy `/agentteam:tests $0`.

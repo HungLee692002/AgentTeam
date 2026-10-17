@@ -9,7 +9,7 @@ Giai đoạn TESTS cho tính năng `$0`.
 
 Trước hết nạp skill `agentteam:team-rules` (quy trình, Vòng review, quy tắc chung).
 
-1. Kiểm tra `docs/features/$0/plan.md` có `Status: approved`. Nếu không, dừng lại.
+1. Kiểm tra `docs/features/$0/plan.md` tồn tại. Nếu không, dừng và nói tôi cần chạy `/agentteam:plan-feature`. Nếu bản review `plan` mới nhất còn Blocking, dừng và nêu ra. Nếu ổn và Status còn `draft`, tự duyệt theo skill `agentteam:team-rules` (đổi sang `Status: approved`, thêm `Approved: <ngày>`, commit `docs($0): approve plan`).
 2. Chuẩn bị nhánh: nếu nhánh `feat/$0` chưa có, tạo từ nhánh chính (xem CLAUDE.md) bằng `git switch -c feat/$0 <nhánh-chính>`; nếu có rồi thì `git switch feat/$0`. Nếu working tree đang có thay đổi chưa commit, dừng và hỏi tôi.
 3. Giao việc cho subagent `agentteam:test-engineer` với slug `$0`.
 4. Giao cho subagent `agentteam:reviewer` với loại `tests`. Áp dụng **Vòng review** trong skill `agentteam:team-rules` (sửa bằng `agentteam:test-engineer`).

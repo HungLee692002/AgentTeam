@@ -15,4 +15,4 @@ Trước hết nạp skill `agentteam:team-rules` (quy trình, Vòng review, quy
 3. Giao việc cho subagent `agentteam:researcher` với slug và mô tả ý tưởng.
 4. Khi researcher xong, giao cho subagent `agentteam:reviewer` với loại `research`. Áp dụng **Vòng review** trong skill `agentteam:team-rules`.
 5. Trình bày cho tôi: tóm tắt, hướng đề xuất, câu hỏi mở, verdict của reviewer.
-6. Dừng lại. Nhắc tôi trả lời các câu hỏi mở rồi chạy `/agentteam:approve <slug> research`, sau đó `/agentteam:spec <slug> <các quyết định>`.
+6. Dừng lại. Nhắc tôi đọc `docs/features/<slug>/research.md` rồi chạy `/agentteam:spec <slug> <quyết định cho các câu hỏi mở>`.
