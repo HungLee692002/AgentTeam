@@ -1,6 +1,6 @@
 # agentteam: đội agent cho Claude Code
 
-Plugin gồm 6 agent và 9 lệnh để tự động hóa quy trình phát triển tính năng: **research → spec → plan → tests (TDD) → implement → review → PR**, có điểm duyệt của chủ sản phẩm ở mỗi giai đoạn.
+Plugin gồm 6 agent và 8 lệnh để tự động hóa quy trình phát triển tính năng: **research → spec → plan → tests (TDD) → implement → review → PR**, mỗi giai đoạn để lại tài liệu trong `docs/`; gọi skill giai đoạn sau là duyệt tài liệu trước, không có lệnh approve riêng.
 
 Sửa plugin một lần ở repo này, các dự án đã cài nhận bản mới khi cập nhật.
 
@@ -51,17 +51,14 @@ Trong phiên đang chạy, `/reload-plugins` để nạp lại sau khi sửa.
 
 ```text
 /agentteam:research export-csv Cho phép người dùng xuất danh sách giao dịch ra file CSV
-/agentteam:approve export-csv research
 /agentteam:spec export-csv Chỉ xuất 12 tháng gần nhất; dùng dấu phẩy; UTF-8 có BOM
-/agentteam:approve export-csv spec
 /agentteam:plan-feature export-csv
-/agentteam:approve export-csv plan
 /agentteam:tests export-csv          # tạo nhánh feat/export-csv, viết test (đang fail)
 /agentteam:implement export-csv      # làm lần lượt T1, T2… mỗi task một commit
 /agentteam:review-feature export-csv # review, sửa, hỏi trước khi push + tạo draft PR
 ```
 
-Hoặc chạy cả chuỗi, dừng ở các điểm duyệt: `/agentteam:feature export-csv <ý tưởng>`. Bị ngắt giữa chừng thì chạy lại cùng lệnh, nó đọc `Status` của các file để làm tiếp.
+Hoặc chạy cả chuỗi, tự chuyển giai đoạn, chỉ dừng khi bị chặn hoặc trước khi push: `/agentteam:feature export-csv <ý tưởng>`. Bị ngắt giữa chừng thì chạy lại cùng lệnh, nó đọc `Status` của các file để làm tiếp.
 
 ## Cấu trúc repo
 
@@ -88,8 +85,8 @@ Trong dự án dùng plugin: `CLAUDE.md` (stack, lệnh, quy ước riêng), `do
 
 - **Hook `PreToolUse`** chặn: push lên `main`/`master`, force push, `gh pr merge`, `rm -rf`, đọc `.env*`. (Plugin không phân phối được `permissions.deny`, nên dùng hook thay thế.)
 - **Quyền công cụ theo agent**: reviewer chỉ đọc; researcher không cần sửa code.
-- **Lệnh có tác dụng phụ chỉ người gọi được**: `tests`, `implement`, `review-feature`, `approve`, `feature`, `init` có `disable-model-invocation: true`.
-- **Điểm duyệt**: giai đoạn sau từ chối chạy nếu tài liệu trước chưa `Status: approved`.
+- **Lệnh có tác dụng phụ chỉ người gọi được**: `tests`, `implement`, `review-feature`, `feature`, `init` có `disable-model-invocation: true`.
+- **Tự duyệt có điều kiện**: giai đoạn sau chỉ chạy nếu tài liệu trước tồn tại và review mới nhất không còn Blocking; khi đó nó đổi tài liệu trước sang `Status: approved`.
 - **Giới hạn vòng lặp**: tối đa 2 vòng review–sửa rồi trả quyết định về cho bạn.
 - **Không merge**: agent chỉ tạo draft PR.
 

@@ -14,10 +14,12 @@ description: Quy trình, vòng review, trạng thái tài liệu và quy tắc c
 ## Quy trình
 
 ```
-/agentteam:research → /agentteam:approve → /agentteam:spec → /agentteam:approve → /agentteam:plan-feature → /agentteam:approve → /agentteam:tests → /agentteam:implement → /agentteam:review-feature → PR
-                                                                                        (TDD: test viết trước code)
+/agentteam:research → /agentteam:spec → /agentteam:plan-feature → /agentteam:tests → /agentteam:implement → /agentteam:review-feature → PR
+                                                                (TDD: test viết trước code)
 ```
-Hoặc chạy cả chuỗi với `/agentteam:feature <slug> <ý tưởng>` (có điểm dừng để duyệt).
+Hoặc chạy cả chuỗi với `/agentteam:feature <slug> <ý tưởng>`.
+
+Không có lệnh duyệt riêng: gọi skill của giai đoạn sau chính là sự đồng ý với tài liệu giai đoạn trước (xem **Trạng thái tài liệu**).
 
 | Giai đoạn | Agent | Đầu ra |
 |---|---|---|
@@ -37,7 +39,9 @@ Hoặc chạy cả chuỗi với `/agentteam:feature <slug> <ý tưởng>` (có 
 
 ## Trạng thái tài liệu
 - Dòng đầu mỗi tài liệu là `Status: draft` hoặc `Status: approved`.
-- Chỉ chủ sản phẩm duyệt (qua `/agentteam:approve` hoặc xác nhận rõ ràng trong `/agentteam:feature`). Giai đoạn sau không chạy nếu tài liệu giai đoạn trước chưa approved.
+- Giai đoạn kết thúc ở `Status: draft`. Khi chủ sản phẩm gọi skill của giai đoạn kế tiếp, skill đó tự duyệt tài liệu trước: đổi dòng đầu thành `Status: approved`, thêm dòng `Approved: <ngày>` ngay dưới, rồi mới chạy. Không cần lệnh duyệt riêng.
+- Điều kiện để tự duyệt: tài liệu tồn tại và bản review mới nhất cho loại đó không còn mục Blocking. Nếu còn, dừng và nêu các mục đó.
+- Agent không tự gọi giai đoạn kế tiếp; chỉ chủ sản phẩm (hoặc `/agentteam:feature`) chuyển giai đoạn.
 
 ## Quy tắc cho mọi agent
 - Không push lên nhánh chính, không force push, không merge PR. Push nhánh tính năng và tạo PR chỉ khi chủ sản phẩm đồng ý. (Hook của plugin cũng chặn các lệnh này.)
